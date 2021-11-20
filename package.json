@@ -1,0 +1,26 @@
+{
+  "name": "js_game",
+  "version": "1.0.0",
+  "description": "A small game written in vanilla JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/avrielatta/js_game.git"
+  },
+  "keywords": [
+    "js",
+    "html",
+    "html5",
+    "game",
+    "javascript"
+  ],
+  "author": "Avrie Latta",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/avrielatta/js_game/issues"
+  },
+  "homepage": "https://github.com/avrielatta/js_game#readme"
+}
