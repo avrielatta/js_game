@@ -1,1 +1,8 @@
-/* Comment */
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+canvas {
+    border: 1px solid black;
+}
