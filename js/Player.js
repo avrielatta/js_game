@@ -1,4 +1,4 @@
-export default class Player {
+export class Player {
 
     constructor(name, character, x, y) {
         this.name = name;
@@ -16,5 +16,12 @@ export default class Player {
     set character(character)    { this._character = character }
     set x(x)                    { this._x = x }
     set y(y)                    { this._y = y }
+
+    updatePlayer(currentKeys) {
+        if (currentKeys[0]) this.y -= 3;
+        if (currentKeys[1]) this.x += 3;
+        if (currentKeys[2]) this.y += 3;
+        if (currentKeys[3]) this.x -= 3;
+    }
 
 }

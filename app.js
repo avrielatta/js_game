@@ -1,5 +1,5 @@
 // Application
-import Player from './js/Player.js';
+import { Player } from './js/Player.js';
     
 var canvas = document.querySelector('#game-window');
 
@@ -7,8 +7,9 @@ if (canvas.getContext) {
     
     var ctx = canvas.getContext('2d');
     var playerImg = new Image();
-    var keys = [0, 0, 0, 0, 0];
     var player = new Player("OnionSoap", playerImg, 0, 0);
+    var up, right, left, down = false;
+    var currentKeys = [up, right, down, left];
 
     playerImg.addEventListener('load', () => {
         
@@ -22,67 +23,23 @@ if (canvas.getContext) {
     // canvas not supported in browser
 }
 
-const changeKey = (key, to) => {
-    switch (key) {
-        // left
-        case 65:
-        case 37:
-            keys[0] = to;
-            break;
-        // up
-        case 87:
-        case 38:
-            keys[2] = to;
-            break;
-        // right
-        case 68:
-        case 39:
-            keys[1] = to;
-            break;
-        // down
-        case 83:
-        case 40:
-            keys[3] = to;
-            break;
-        // space
-        case 32:
-            keys[4] = to;
-            break;
-    }
-};
-
 document.addEventListener('keydown', (e) => {
-    changeKey(e.key, 1);
-
+    if (e.key == 'ArrowUp')     currentKeys[0] = true;
+    if (e.key == 'ArrowRight')  currentKeys[1] = true;
+    if (e.key == 'ArrowDown')   currentKeys[2] = true;
+    if (e.key == 'ArrowLeft')   currentKeys[3] = true;
 });
 
 document.addEventListener('keyup', (e) => {
-    changeKey(e.key, 0);
+    if (e.key == 'ArrowUp')     currentKeys[0] = false;
+    if (e.key == 'ArrowRight')  currentKeys[1] = false;
+    if (e.key == 'ArrowDown')   currentKeys[2] = false;
+    if (e.key == 'ArrowLeft')   currentKeys[3] = false;
 });
 
-const init = () => {
-
-};
-
 const gameLoop = () => {
-    while (true) {
-
-        ctx.drawImage(player.character, player.x, player.y);
-        return;
-
-    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    player.updatePlayer(currentKeys);
+    ctx.drawImage(player.character, player.x, player.y);
+    window.requestAnimationFrame(gameLoop);
 };
-
-// function updateLoop(time) {
-//     if (lastTime == null) {
-//         lastTime = time;
-//         window.requestAnimationFrame(updateLoop);
-//         return;
-//     }
-//     const delta = time - lastTime;
-//     updateBird(delta);
-//     updatePipes(delta);
-//     if (checkLose()) return handleLose();
-//     lastTime = time;
-//     window.requestAnimationFrame(updateLoop);
-// }
